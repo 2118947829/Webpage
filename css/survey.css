@@ -1,0 +1,631 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+/*谷哥滚动条样式*/
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    position: absolute
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #5bc0de
+}
+
+::-webkit-scrollbar-track {
+    background-color: #ddd
+}
+
+/*头部*/
+.header {
+    width: 100%;
+    height: 1.5rem;
+    /*background: red;*/
+}
+
+.header .header-left {
+    width: 25%;
+    height: 1.05rem;
+    color: white;
+    /*    border: 1px solid green;*/
+    /* text-align: center; */
+    line-height: 1.05rem;
+}
+
+.header .header-center {
+    width: 50%;
+    height: 1.2rem;
+    position: relative;
+}
+
+.header .header-center .header-title {
+    text-align: center;
+    color: #ffffff;
+    font-size: .4rem;
+    text-shadow: 0 0 .3rem #00d8ff;
+    line-height: 1.05rem;
+}
+
+.header .header-img {
+    background: url("../img/head.gif") no-repeat center center;
+    background-size: 100%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: .4rem;
+}
+
+.header .header-right {
+    width: 25%;
+    height: 1.05rem;
+}
+
+.header .header-bottom {
+    width: calc(100% - .4rem);
+    height: .16rem;
+    background: url("../img/header.png") no-repeat;
+    background-size: calc(100% - .2rem) 100%;
+    padding: 0 .2rem;
+    margin-left: .3rem;
+}
+
+/*
+内容*/
+.center {
+    padding: .1rem .2rem .1rem .2rem;
+}
+
+.center .center-left {
+    width: 20%;
+    padding: .1rem;
+}
+
+.title {
+    width: 90%;
+    height: 0.3rem;
+    position: relative;
+    top: .1rem;
+    left: .25rem;
+    color: white;
+    padding-left: 0.12rem;
+    line-height: 0.3rem;
+
+}
+
+.title:before {
+    width: 0.05rem;
+    height: 0.25rem;
+    top: 0.02rem;
+    position: absolute;
+    content: "";
+    background: #59ebe8;
+    border-radius: 0.02rem;
+    left: 0;
+}
+
+.center .center-left .left-cen {
+    width: 100%;
+    height: 5.4rem;
+    margin-bottom: .4rem;
+}
+
+.center .center-left .left-cen .banner {
+    width: calc(100% - .2rem);
+    height: calc(100% - .6rem);
+    margin-left: .1rem;
+    margin-top: .1rem;
+    padding: .1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.center .center-left .left-cen .banner {
+    height: 100%;
+}
+
+.center .center-left .left-cen .banner {
+    color: white !important;
+    width: 100%;
+    float: left;
+    height: 100%;
+    margin-top: .1rem;
+}
+
+.center .center-left .left-cen .banner .list {
+    color: white !important;
+    width: 100%;
+    float: left;
+    height: 100%;
+}
+
+.center .center-left .left-cen .banner.list .listTxt {
+    color: white !important;
+    width: 100%;
+    height: 100%;
+}
+
+.listword {
+    display: flex;
+    font-size: 15px;
+    line-height: 0.5rem;
+}
+
+.word_left {
+    color: #a9e2ff;
+    width: 1.7rem;
+}
+
+.center .center-left .left-bottom {
+    width: 100%;
+    height: 4.6rem;
+    margin-bottom: .4rem;
+}
+
+.center .center-cen {
+    width: 50%;
+    padding: .1rem;
+}
+
+.center .center-cen .cen-top {
+    width: 100%;
+    height: 6.8rem;
+    margin-bottom: .4rem;
+    position: relative;
+}
+
+.center .center-cen .cen-bottom {
+    width: 100%;
+    height: 3.2rem;
+}
+
+.center .center-cen .bottom-b {
+    height: 100%;
+    width: 100%;
+}
+
+.center .center-right {
+    width: 30%;
+    padding: .1rem;
+}
+
+.center .center-right .right-top {
+    width: 100%;
+    height: 3.2rem;
+    margin-bottom: .4rem;
+}
+
+.center .center-right .right-top .right-top-cent {
+    width: calc(100% - 0.2rem);
+    height: 2.6rem;
+    margin-left: 0.1rem;
+    margin-top: 0.1rem;
+}
+
+.center .center-right .right-cen {
+    width: 100%;
+    height: 3.2rem;
+    margin-bottom: .4rem;
+    border: 1px solid #0bc4e9;
+    background: rgba(0, 72, 115, 0.28);
+    transition: all 1s;
+    cursor: pointer;
+    position: relative;
+}
+
+.center .center-right .right-cen .right-cen-cent {
+    width: calc(100% - 0.2rem);
+    height: 2.6rem;
+    margin-left: 0.1rem;
+    margin-top: 0.1rem;
+}
+
+.center .center-right .right-bottom {
+    width: 100%;
+    height: 3.2rem;
+}
+
+.center .center-right .right-bottom .chat {
+    width: calc(100% - 0.2rem);
+    height: 2.6rem;
+    margin-left: 0.1rem;
+    margin-top: 0.1rem;
+}
+
+
+.popup {
+    width: 0;
+    height: 0;
+    /*background: #061f3e;*/
+    background: rgba(25, 127, 170, .9);
+    border: 1px solid #197faa;
+    margin: 40px auto 0;
+    box-shadow: 0px 0px 10px #197faa inset;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 999;
+    border-radius: 8px;
+    display: block;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.popup .popupClose {
+    display: block;
+    width: 44px;
+    height: 44px;
+    background: url(../img/s_ico3.png);
+    background-size: 100 100%;
+    position: absolute;
+    top: -22px;
+    right: -22px;
+    display: none;
+    transition: 0.3s;
+}
+
+.popup .popupClose:hover {
+    transform: rotate(180deg);
+}
+
+
+
+/* 更改 */
+.Content {
+    width: 100%;
+    padding-top: 2rem;
+    display: flex;
+}
+
+.ContentLeft {
+    width: 40%;
+}
+
+.TopLC {
+    width: 40%;
+    display: flex;
+    margin-left: 1%;
+    position: absolute;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.TopLCItem {
+    width: .05rem;
+    height: .08rem;
+    padding-right: .2rem;
+    background: #00ff79;
+}
+
+/* 使用CSS动画使项目移动 */
+@keyframes TopLCmove {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.TopLCItem {
+    left: calc((var --i)*40px);
+    animation: TopLCmove 0.5s linear infinite;
+    animation-delay: calc((var --i)* -500ms);
+}
+
+.ConLeftBottom {
+    display: flex;
+    margin-top: 25%;
+}
+
+.ContentRight {
+    width: 60%;
+    margin-top: 0.5%;
+}
+
+.ConBottom {
+    width: 4rem;
+    height: .3rem;
+    margin: 3%;
+}
+
+.ConBottom_btn {
+    display: flex;
+}
+
+.btn_stop,
+.btn_start {
+    width: .5rem;
+    height: .4rem;
+    background: #7eddf65c;
+    color: #ffffff;
+    line-height: .4rem;
+    text-align: center;
+    border-radius: .1rem;
+    cursor: pointer;
+    margin-right: .5rem;
+}
+
+.ConLeft {
+    float: left;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+}
+
+.conveyor {
+    width: 100%;
+    height: .8rem;
+    /* position: relative; */
+    overflow: hidden;
+    display: flex;
+    /* 隐藏超出容器的部分 */
+}
+
+.item {
+    width: .4rem;
+    height: 100%;
+}
+
+/* 使用CSS动画使项目移动 */
+@keyframes move {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes Xmove {
+    0% {
+        bottom: 100%;
+    }
+
+    100% {
+        bottom: 0;
+    }
+}
+
+.item {
+    left: calc((var --i)*40px);
+    animation: move 0.5s linear infinite;
+    animation-delay: calc((var --i)* -500ms);
+}
+
+.Lline {
+    width: 55%;
+    height: 32%;
+    z-index: 1;
+    overflow: hidden;
+    position: absolute;
+}
+
+.XLine {
+    width: 100%;
+    height: 3px;
+    background-color: #00ff79;
+    top: calc((var --j)*3px);
+    animation: Xmove 5s linear infinite;
+    animation-delay: calc((var --j)* -5s);
+    position: absolute;
+    bottom: 100%;
+}
+
+.Lline1 {
+    width: 55%;
+    height: 32%;
+    z-index: 1;
+    overflow: hidden;
+    position: absolute;
+}
+
+.XLline1 {
+    width: 100%;
+    height: 3px;
+    background-color: #00ff79;
+    animation: Xmove 7s linear infinite;
+    position: absolute;
+    bottom: 100%;
+}
+
+.Lline2 {
+    width: 55%;
+    height: 32%;
+    z-index: 1;
+    overflow: hidden;
+    position: absolute;
+}
+
+.XLline2 {
+    width: 100%;
+    height: 3px;
+    background-color: #00ff79;
+    animation: Xmove 10s linear infinite;
+    position: absolute;
+    bottom: 100%;
+}
+
+.Lline3 {
+    width: 55%;
+    height: 32%;
+    z-index: 1;
+    overflow: hidden;
+    position: absolute;
+}
+
+.XLline3 {
+    width: 100%;
+    height: 3px;
+    background-color: #00ff79;
+    animation: Xmove 13s linear infinite;
+    position: absolute;
+    bottom: 100%;
+}
+
+.RLine {
+    display: flex;
+    width: 100%;
+    height: 70%;
+}
+
+.Line {
+    width: 10px;
+    background: rgba(267, 108, 262, 0.3);
+    border-radius: 10px;
+    margin-right: 5%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotateY(-360deg);
+    }
+}
+
+.Line1 {
+    width: 10px;
+    background: rgb(173 165 173 / 30%);
+    border-radius: 10px;
+    margin-right: 5%;
+    animation: spin 10s linear infinite;
+}
+
+.bottom-lamp {
+    margin: 1rem .5rem;
+    width: 100%;
+    height: 50%;
+}
+
+.bottom_lamp {
+    display: flex;
+    width: 100%;
+    height: 50%;
+}
+
+/* table表格 */
+.listhead {
+    height: .55rem;
+    display: flex;
+    justify-content: left;
+    border-bottom: 1px solid #3486da;
+}
+
+.listhead span,
+.listnav li span {
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+    height: .55rem;
+    line-height: .55rem;
+    display: inline-block;
+}
+
+.listhead span {
+    font-size: .2rem;
+    color: #3486da;
+    font-weight: bold;
+    font-size: .2rem;
+    color: #3486da;
+}
+
+.listnav ul li {
+    border-bottom: 1px dotted rgba(103, 144, 255, .3);
+}
+
+.listnav1 ul li span {
+    font-size: .18rem;
+}
+
+.listnav ul li span:first-child,
+.listhead span:first-child {
+    width: 30%
+}
+
+.listnav ul li span:last-child,
+.listhead span:last-child {
+    width: 100%
+}
+
+.listnav ul li span {
+    font-size: .18rem;
+}
+
+.listnav {
+    height: calc(100% - .55rem);
+}
+
+.listnav ul li {
+    height: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+.boxnav {
+    height: calc(100% - .4rem);
+    padding-top: .1rem;
+}
+/*Plugin CSS自滚*/
+.str_wrap {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+}
+
+
+.str_move {
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: move;
+}
+
+.str_move_clone {
+    display: inline-block;
+    vertical-align: top;
+    position: absolute;
+    left: 100%;
+    top: 0;
+}
+
+.str_vertical .str_move_clone {
+    left: 0;
+    top: 100%;
+}
+
+.str_down .str_move_clone {
+    left: 0;
+    bottom: 100%;
+}
+
+.str_vertical .str_move,
+.str_down .str_move {
+    white-space: normal;
+    width: 100%;
+    height: 100%;
+}
+
+.str_static .str_move,
+.no_drag .str_move,
+.noStop .str_move {
+    cursor: inherit;
+}
+
+
+

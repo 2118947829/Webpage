@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Access-Control-Allow-Origin" content="*" charset="utf-8">
+	<title>index</title>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/echarts.min.js"></script>
+	<link rel="stylesheet" href="css/comon0.css" />
+</head>
+
+<body>
+	<div class="loading">
+		<div class="loadbox"><img src="images/loading.gif" /> 页面加载中...</div>
+	</div>
+	<div class="canvas">
+		<canvas width="100%" height="100%"></canvas>
+	</div>
+
+	<div class="head">
+		<h1><a href="">国妇婴医院医废后勤大数据展现平台</a></h1>
+	</div>
+	<div class="mainbox">
+		<div class="topnav">
+			<ul class="clearfix">
+				<li>
+					<div class="boxall" style="padding: 0">
+						<div class="tit01">各类垃圾占比</div>
+						<div class="boxnav nav03" id="echart4"></div>
+						<div class="boxfoot"></div>
+					</div>
+				</li>
+				<li>
+					<div class="boxall" style="padding: 0">
+						<div class="tit01">最近一周各类垃圾数量趋势</div>
+						<div class="boxnav nav03" id="echart3"></div>
+						<div class="boxfoot"></div>
+					</div>
+				</li>
+				<li>
+					<div class="boxall" style="padding: 0">
+						<div class="tit01">最近一周各AGV运行时长趋势</div>
+						<div class="boxnav nav03" id="echart5"></div>
+						<div class="boxfoot"></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="" style="height: calc(50% - 0.25rem)">
+			<ul class="ulheight">
+				<li>
+					<div class="boxall">
+						<div class="tit01">各楼层垃圾占比</div>
+						<div class="boxnav nav03" id="echart1"></div>
+						<div class="boxfoot"></div>
+					</div>
+				</li>
+				<li>
+					<div class="boxall">
+						<div class="tit01">最近1周各层楼垃圾信息</div>
+						<div class="boxnav nav03" id="echart2"></div>
+						<div class="boxfoot"></div>
+					</div>
+				</li>
+				<li>
+					<div class="boxall">
+						<div class="tit01">最近调度信息</div>
+						<div class="boxnav nav03">
+							<div class="listhead">
+								<span>日期</span>
+								<span>时间</span>
+								<span>区域</span>
+								<span>执行机器人</span>
+								<span>任务状态</span>
+								<span>类型</span>
+							</div>
+							<div class="listnav scrollDiv">
+								<ul>
+									<div id="taskinfo"></div>
+								</ul>
+							</div>
+						</div>
+						<div class="boxfoot"></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<script language="JavaScript" src="js/js.js"></script>
+	<script type="text/javascript" src="js/jquery.countup.min.js"></script>
+	<script type="text/javascript" src="js/jquery.waypoints.min.js"></script>
+	<script src="js/jquery.liMarquee.js"></script>
+	<script type="text/javascript">
+		$('.counter').countUp()
+
+		$(function () {
+			$('.scrollDiv').liMarquee({
+				direction: 'up', //身上滚动
+				runshort: true, //内容不足时不滚动
+				scrollamount: 15 //速度
+			})
+			var temp = "";
+			//var temp="<li><span>23</span><span>44</span><span>22</span></li><li><span>23</span><span>44</span><span>22</span></li>";
+			//$('#taskinfo').html(temp);	 
+			GetTaskInfo();
+			setInterval(GetTaskInfo, 1000 * 60 * 10);
+			function GetTaskInfo() {
+				temp = "";
+				$.post("http://39.108.69.97:17739/GfyService.asmx/GetTaskInfo", {}, function (data) {
+					for (var i = 0; i < 20; i++) {
+						var obj = eval(data);
+						var temptime = "";
+						var tempdate = ""; //2023/10/30 15:12:49
+						var temp01 = "";
+						if (obj[i].CallTime.length > 0) {
+							var arr = obj[i].CallTime.split(" ");
+							tempdate = arr[0].substring(5); //10/30
+							temptime = arr[1]; 				//15:12:49
+							if (temptime.length != 8) {
+								temptime = "0" + temptime;
+							}
+						}
+						//if(tempdate.indexOf("/")!=-1)
+						//{
+						//    tempdate=tempdate.replace('/','0')
+						//}
+
+						temp += "<li><span>" + tempdate + "</span><span>" + temptime + "</span><span>";
+						var sT = "";
+						switch (obj[i].Area) {
+							case "DT08":
+								sT = "21梯";
+								break;
+							case "DT18":
+								sT += "11梯";
+								break;
+							case "DT06":
+								sT += "14梯";
+								break;
+							default:
+								sT = "21梯";
+								break;
+						}
+						temp += obj[i].Floor + "楼" + sT + "</span><span>";
+						if (obj[i].ExeAgv != null) {
+							if (obj[i].ExeAgv != "") {
+								temp += obj[i].ExeAgv;
+							} else {
+								temp += "AGV02";
+							}
+
+						}
+						temp += "</span><span>";
+						switch (obj[i].Status) {
+							case "0":
+								temp += "等待执行";
+								break;
+							case "1":
+								temp += "正在执行";
+								break;
+							case "2":
+								temp += "完成";
+								break;
+							default:
+								temp += "等待执行";
+								break;
+						}
+						temp += "</span><span>";
+						switch (obj[i].RubbishType) {
+							case "1":
+								temp += "感染类";
+								break;
+							case "2":
+								temp += "病理类";
+								break;
+							case "3":
+								temp += "损伤类";
+								break;
+							default:
+								temp += "感染类";
+								break;
+						}
+						temp += "</span></li>";
+					}
+					$('#taskinfo').html(temp);
+					//$('#taskinfo').innerHTML(temp);								
+				});
+			}
+		})
+	</script>
+
+	<script>
+		$(function () {
+			var canvas = document.querySelector('canvas'),
+				ctx = canvas.getContext('2d')
+
+			canvas.width = window.innerWidth
+
+			canvas.height = window.innerHeight
+
+			ctx.lineWidth = 0.3
+
+			ctx.strokeStyle = new Color(150).style
+
+			var mousePosition = {
+				x: (30 * canvas.width) / 100,
+
+				y: (30 * canvas.height) / 100
+			}
+
+			var dots = {
+				nb: 250,
+
+				distance: 50,
+
+				d_radius: 400,
+
+				array: []
+			}
+
+			function colorValue(min) {
+				return Math.floor(Math.random() * 255 + min)
+			}
+
+			function createColorStyle(r, g, b) {
+				return 'rgba(' + r + ',' + g + ',' + b + ', 0.8)'
+			}
+
+			function mixComponents(comp1, weight1, comp2, weight2) {
+				return (comp1 * weight1 + comp2 * weight2) / (weight1 + weight2)
+			}
+
+			function averageColorStyles(dot1, dot2) {
+				var color1 = dot1.color,
+					color2 = dot2.color
+
+				var r = mixComponents(color1.r, dot1.radius, color2.r, dot2.radius),
+					g = mixComponents(color1.g, dot1.radius, color2.g, dot2.radius),
+					b = mixComponents(color1.b, dot1.radius, color2.b, dot2.radius)
+
+				return createColorStyle(Math.floor(r), Math.floor(g), Math.floor(b))
+			}
+
+			function Color(min) {
+				min = min || 0
+
+				this.r = colorValue(min)
+
+				this.g = colorValue(min)
+
+				this.b = colorValue(min)
+
+				this.style = createColorStyle(this.r, this.g, this.b)
+			}
+
+			function Dot() {
+				this.x = Math.random() * canvas.width
+
+				this.y = Math.random() * canvas.height
+
+				this.vx = -0.5 + Math.random()
+
+				this.vy = -0.5 + Math.random()
+
+				this.radius = Math.random() * 2
+
+				this.color = new Color()
+
+				//console.log(this)
+			}
+
+			Dot.prototype = {
+				draw: function () {
+					ctx.beginPath()
+
+					ctx.fillStyle = this.color.style
+
+					ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
+
+					ctx.fill()
+				}
+			}
+
+			function createDots() {
+				for (i = 0; i < dots.nb; i++) {
+					dots.array.push(new Dot())
+				}
+			}
+
+			function moveDots() {
+				for (i = 0; i < dots.nb; i++) {
+					var dot = dots.array[i]
+
+					if (dot.y < 0 || dot.y > canvas.height) {
+						dot.vx = dot.vx
+
+						dot.vy = -dot.vy
+					} else if (dot.x < 0 || dot.x > canvas.width) {
+						dot.vx = -dot.vx
+
+						dot.vy = dot.vy
+					}
+
+					dot.x += dot.vx
+
+					dot.y += dot.vy
+				}
+			}
+
+			function connectDots() {
+				for (i = 0; i < dots.nb; i++) {
+					for (j = 0; j < dots.nb; j++) {
+						i_dot = dots.array[i]
+
+						j_dot = dots.array[j]
+
+						if (
+							i_dot.x - j_dot.x < dots.distance &&
+							i_dot.y - j_dot.y < dots.distance &&
+							i_dot.x - j_dot.x > -dots.distance &&
+							i_dot.y - j_dot.y > -dots.distance
+						) {
+							if (
+								i_dot.x - mousePosition.x < dots.d_radius &&
+								i_dot.y - mousePosition.y < dots.d_radius &&
+								i_dot.x - mousePosition.x > -dots.d_radius &&
+								i_dot.y - mousePosition.y > -dots.d_radius
+							) {
+								ctx.beginPath()
+
+								ctx.strokeStyle = averageColorStyles(i_dot, j_dot)
+
+								ctx.moveTo(i_dot.x, i_dot.y)
+
+								ctx.lineTo(j_dot.x, j_dot.y)
+
+								ctx.stroke()
+
+								ctx.closePath()
+							}
+						}
+					}
+				}
+			}
+
+			function drawDots() {
+				for (i = 0; i < dots.nb; i++) {
+					var dot = dots.array[i]
+
+					dot.draw()
+				}
+			}
+
+			function animateDots() {
+				ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+				moveDots()
+
+				connectDots()
+
+				drawDots()
+
+				requestAnimationFrame(animateDots)
+			}
+
+			$('canvas').on('mousemove', function (e) {
+				mousePosition.x = e.pageX
+
+				mousePosition.y = e.pageY
+			})
+
+			$('canvas').on('mouseleave', function (e) {
+				mousePosition.x = canvas.width / 2
+
+				mousePosition.y = canvas.height / 2
+			})
+
+			createDots()
+
+			requestAnimationFrame(animateDots)
+		})
+	</script>
+</body>
+
+</html>

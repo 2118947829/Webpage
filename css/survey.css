@@ -59,7 +59,10 @@
 
 .header .header-right {
     width: 25%;
-    height: 1.05rem;
+    height: 1rem;
+    text-align: center;
+    font-size: 0.3rem;
+    line-height: 1rem;
 }
 
 .header .header-bottom {
@@ -107,7 +110,7 @@
 
 .center .center-left .left-cen {
     width: 100%;
-    height: 5.4rem;
+    height: 3.6rem;
     margin-bottom: .4rem;
 }
 
@@ -149,7 +152,7 @@
 .listword {
     display: flex;
     font-size: 15px;
-    line-height: 0.5rem;
+    line-height: 0.33rem;
 }
 
 .word_left {
@@ -159,7 +162,7 @@
 
 .center .center-left .left-bottom {
     width: 100%;
-    height: 4.6rem;
+    height: 3rem;
     margin-bottom: .4rem;
 }
 
@@ -170,14 +173,14 @@
 
 .center .center-cen .cen-top {
     width: 100%;
-    height: 6.8rem;
+    height: 6rem;
     margin-bottom: .4rem;
     position: relative;
 }
 
 .center .center-cen .cen-bottom {
     width: 100%;
-    height: 3.2rem;
+    height: 4rem;
 }
 
 .center .center-cen .bottom-b {
@@ -278,7 +281,10 @@
 /* 更改 */
 .Content {
     width: 100%;
-    padding-top: 2rem;
+}
+.Content_bottom {
+    width: 100%;
+    padding-top: 0.5rem;
     display: flex;
 }
 
@@ -510,6 +516,30 @@
     display: flex;
     width: 100%;
     height: 50%;
+    text-align: center;
+    padding-top: 0.5rem;
+}
+.lampB{
+    flex: 1;
+}
+.left_production{
+    width: 100%;
+    height: 100%;
+    padding-top: 0.3rem;
+}
+.production{
+    width: 100%;
+    display: flex;
+    text-align: center;
+
+}
+.production_sum{
+    flex: 1;
+    line-height: 0.3rem;
+}
+.production_num{
+    display: flex;
+    margin-left: 0.1rem;
 }
 
 /* table表格 */
